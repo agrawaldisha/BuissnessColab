@@ -1,125 +1,283 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Booking Colab | Creative Form</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Business Colab — Home</title>
 
-    <style>
-        :root {
-            --primary-color: #007bff;
-            --secondary-color: #f8f9fa;
-            --text-color: #343a40;
-            --border-color: #ced4da;
-            --focus-glow: 0 0 0 0.2rem rgba(0,123,255,0.25);
-            --success-color: #28a745;
-            --error-color: #dc3545;
-            --font-family: 'Arial', sans-serif;
-        }
+  <style>
+    :root{
+      --bg:#0f1724;
+      --card:#0b1220;
+      --accent1:#7c5cff;
+      --accent2:#00d4ff;
+      --muted:rgba(255,255,255,.65);
+      --glass: rgba(255,255,255,0.03);
+      --radius:14px;
+      --max:1100px;
+      color-scheme: dark;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
 
-        body {
-            font-family: var(--font-family);
-            background-color: #e9ecef;
-            color: var(--text-color);
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            min-height: 100vh;
-            padding: 40px 20px;
-            margin: 0;
-        }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background:
+        radial-gradient(1200px 600px at 10% 10%, rgba(124,92,255,0.12), transparent 10%),
+        radial-gradient(1000px 500px at 90% 90%, rgba(0,212,255,0.06), transparent 8%),
+        var(--bg);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      color:#e6eef8;
+      padding:32px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-height:100vh;
+    }
 
-        h1 {
-            color: var(--primary-color);
-            text-align: center;
-            margin-bottom: 25px;
-            font-weight: 600;
-        }
+    .wrap{
+      width:100%;
+      max-width:var(--max);
+      margin:0 auto;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+      border-radius:20px;
+      padding:28px;
+      box-shadow: 0 8px 30px rgba(2,6,23,0.6);
+      display:grid;
+      grid-template-columns: 1fr 420px;
+      gap:28px;
+      align-items:stretch;
+    }
 
-        .booking-container {
-            width: 100%;
-            max-width: 450px;
-            background-color: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            padding: 30px;
-            border-top: 5px solid var(--primary-color);
-        }
+    /* left hero */
+    .hero{
+      padding:36px;
+      display:flex;
+      flex-direction:column;
+      gap:22px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.012), rgba(255,255,255,0.008));
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,0.02);
+      min-height:360px;
+    }
+    .logo{
+      display:flex;
+      gap:12px;
+      align-items:center;
+    }
+    .logo-mark{
+      width:44px;height:44px;border-radius:10px;
+      background: linear-gradient(135deg,var(--accent1),var(--accent2));
+      display:grid;place-items:center;font-weight:700;
+      box-shadow:0 6px 20px rgba(124,92,255,0.12), 0 2px 6px rgba(0,212,255,0.04);
+      color:#041022;
+      font-family:monospace;
+    }
+    h1{
+      margin:0;
+      font-size:clamp(1.4rem, 3.6vw, 2.6rem);
+      line-height:1.02;
+      letter-spacing:-0.02em;
+    }
+    p.lead{
+      margin:0;
+      color:var(--muted);
+      font-size:clamp(.95rem, 1.8vw, 1.06rem);
+      max-width:56ch;
+    }
 
-        label {
-            display: block;
-            margin-top: 15px;
-            margin-bottom: 5px;
-            font-weight: 500;
-            font-size: 0.95rem;
-        }
+    .cta-row{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      margin-top:auto;
+    }
 
-        input, select {
-            width: 100%;
-            padding: 10px 12px;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            background-color: var(--secondary-color);
-            font-size: 1rem;
-        }
+    .btn{
+      appearance:none;
+      border:0;
+      padding:12px 18px;
+      border-radius:12px;
+      font-weight:600;
+      cursor:pointer;
+      text-decoration:none;
+      display:inline-flex;
+      gap:10px;
+      align-items:center;
+      justify-content:center;
+      transition:transform .14s ease, box-shadow .14s ease, opacity .12s ease;
+      box-shadow: 0 6px 20px rgba(2,6,23,0.6);
+    }
+    .btn-primary{
+      background: linear-gradient(90deg,var(--accent1),var(--accent2));
+      color:#041022;
+    }
+    .btn-ghost{
+      background:transparent;
+      border:1px solid rgba(255,255,255,0.06);
+      color:var(--muted);
+      padding:10px 14px;
+    }
+    .btn:hover{transform:translateY(-3px)}
+    .small{
+      color:var(--muted);
+      font-size:.92rem;
+    }
 
-        #submitBtn {
-            width: 100%;
-            padding: 12px;
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            border-radius: 6px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            margin-top: 30px;
-        }
+    /* right card */
+    .panel{
+      background:linear-gradient(180deg, rgba(255,255,255,0.018), rgba(255,255,255,0.01));
+      padding:18px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,0.02);
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      min-width:260px;
+    }
+    .nav{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+    .nav a.logo-text{
+      color:#fff;font-weight:700;text-decoration:none;
+    }
 
-        #responseMessage {
-            margin-top: 20px;
-            padding: 10px;
-            border-radius: 6px;
-            text-align: center;
-            font-weight: 600;
-        }
+    .booking-btn{
+      display:inline-block;
+      text-decoration:none;
+      padding:10px 14px;
+      border-radius:10px;
+      background:linear-gradient(90deg,var(--accent2),var(--accent1));
+      color:#041022;
+      font-weight:700;
+      box-shadow: 0 10px 30px rgba(0,212,255,0.06);
+    }
 
-        #otherInputs {
-            display: none;
-        }
-    </style>
+    .meta{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      margin-top:6px;
+      color:var(--muted);
+      font-size:.92rem;
+    }
+
+    .features{
+      display:grid;
+      gap:12px;
+      margin-top:8px;
+    }
+    .feature{
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      padding:10px;
+      border-radius:10px;
+      background:var(--glass);
+      border:1px solid rgba(255,255,255,0.02);
+    }
+    .f-icon{
+      width:46px;height:46px;border-radius:10px;
+      display:grid;place-items:center;
+      background:linear-gradient(135deg, rgba(255,255,255,0.02), rgba(255,255,255,0.005));
+      color:var(--accent2);
+      font-weight:700;
+      flex-shrink:0;
+    }
+    .f-body{font-size:.95rem}
+    .f-body b{display:block;color:#fff}
+
+    footer{
+      margin-top:12px;
+      font-size:.86rem;
+      color:var(--muted);
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+
+    /* responsive */
+    @media (max-width:980px){
+      .wrap{grid-template-columns:1fr; padding:20px}
+      .panel{order:-1}
+    }
+    @media (max-width:520px){
+      body{padding:18px}
+      .wrap{gap:14px;padding:16px;border-radius:12px}
+      .logo-mark{width:40px;height:40px}
+      .f-icon{width:40px;height:40px}
+    }
+  </style>
 </head>
 <body>
+  <div class="wrap" role="main" aria-label="Business Colab landing">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="logo" aria-hidden="true">
+        <div class="logo-mark">BC</div>
+        <div>
+          <div style="font-weight:700">Business Colab</div>
+          <div style="font-size:.88rem;color:var(--muted)">Collaborate. Plan. Execute.</div>
+        </div>
+      </div>
 
-    <div class="booking-container">
-        <h1>Booking</h1>
-        <form id="bookingForm">
+      <h1 id="hero-title">Beautifully simple booking and collaboration tools for small teams</h1>
+      <p class="lead">Design meetings, client sessions, and offsites in one place — lightning-fast setup, elegant UI, and mobile-friendly for when you're on the move.</p>
 
-            <label for="bookingDate">Date:</label>
-            <input type="date" id="bookingDate" name="Date" required />
+      <div class="cta-row">
+        <!-- Booking tab kept as a single prominent button linking to webpages/BookingV1.html -->
+        <a class="btn btn-primary" href="webpages/BookingV1.html" aria-label="Open Booking page">Open Booking</a>
+        <a class="btn btn-ghost" href="#features">Learn more</a>
+      </div>
+    </section>
 
-            <label for="bookingPlace">Place:</label>
-            <select id="bookingPlace" name="Place" required>
-                <option value="" disabled selected>Select a place</option>
-                <option value="Sagar Ratna" data-price="70000">Sagar Ratna</option>
-                <option value="Hansraj" data-price="30000">Hansraj</option>
-                <option value="Gopal Garden" data-price="20000">Gopal Garden</option>
-                <option value="Other">Other</option>
-            </select>
+    <aside class="panel" aria-labelledby="panel-title">
+      <div class="nav">
+        <a class="logo-text" href="#">Business Colab</a>
+        <!-- small Booking link as required (keeps a link of Booking tab as a button) -->
+        <a class="booking-btn" href="webpages/BookingV1.html">Booking</a>
+      </div>
 
-            <div id="otherInputs">
-                <label for="otherPlace">Place (Other):</label>
-                <input type="text" id="otherPlace" name="Other_Place_Name" />
+      <div class="meta">
+        <div style="font-weight:700">Fast setup</div>
+        <div style="opacity:.5">•</div>
+        <div>Responsive-ready</div>
+      </div>
 
-                <label for="otherAmount">Amount (Other):</label>
-                <input type="number" id="otherAmount" name="Amount" min="0" />
-            </div>
+      <div id="features" class="features" role="list">
+        <div class="feature" role="listitem">
+          <div class="f-icon">⚡</div>
+          <div class="f-body"><b>Quick Booking</b><span style="color:var(--muted)">One-click access to the booking flow.</span></div>
+        </div>
 
-            <button type="submit" id="submitBtn">Submit</button>
-            <p id="responseMessage"></p>
-        </form>
-    </div>
+        <div class="feature" role="listitem">
+          <div class="f-icon">🔒</div>
+          <div class="f-body"><b>Secure</b><span style="color:var(--muted)">Privacy-minded defaults and safe storage.</span></div>
+        </div>
 
-    <script src="script.js"></script>
+        <div class="feature" role="listitem">
+          <div class="f-icon">📱</div>
+          <div class="f-body"><b>Mobile-first</b><span style="color:var(--muted)">Optimized for phones, tablets and desktop.</span></div>
+        </div>
+      </div>
+
+      <footer>
+        <div>© <span id="yr"></span> Business Colab</div>
+        <div style="opacity:.6">Made with ♥</div>
+      </footer>
+    </aside>
+  </div>
+
+  <script>
+    // lightweight enhancement: current year
+    document.getElementById('yr').textContent = new Date().getFullYear();
+    // Respect reduced-motion preference
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.documentElement.style.scrollBehavior = 'auto';
+    }
+  </script>
 </body>
 </html>
