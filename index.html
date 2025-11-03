@@ -214,55 +214,30 @@
   </style>
 </head>
 <body>
-  <div class="wrap" role="main" aria-label="Business Colab landing">
-    <section class="hero" aria-labelledby="hero-title">
-      <div class="logo" aria-hidden="true">
-        <div class="logo-mark">BC</div>
-        <div>
-          <div style="font-weight:700">Business Colab</div>
-          <div style="font-size:.88rem;color:var(--muted)">Collaborate. Plan. Execute.</div>
-        </div>
-      </div>
 
-      <h1 id="hero-title">Beautifully simple booking and collaboration tools for small teams</h1>
-      <p class="lead">Design meetings, client sessions, and offsites in one place — lightning-fast setup, elegant UI, and mobile-friendly for when you're on the move.</p>
+    <div class="booking-container">
+        <h1>Booking</h1>
+        <form id="bookingForm">
 
-      <div class="cta-row">
-        <!-- Booking tab kept as a single prominent button linking to webpages/BookingV1.html -->
-        <a class="btn btn-primary" href="webpages/BookingV1.html" aria-label="Open Booking page">Open Booking</a>
-        <a class="btn btn-ghost" href="#features">Learn more</a>
-      </div>
-    </section>
+            <label for="bookingDate">Date:</label>
+            <input type="date" id="bookingDate" name="Date" required />
 
-    <aside class="panel" aria-labelledby="panel-title">
-      <div class="nav">
-        <a class="logo-text" href="#">Business Colab</a>
-        <!-- small Booking link as required (keeps a link of Booking tab as a button) -->
-        <a class="booking-btn" href="webpages/BookingV1.html">Booking</a>
-      </div>
+            <label for="bookingPlace">Place:</label>
+            <select id="bookingPlace" name="Place" required>
+                <option value="" disabled selected>Select a place</option>
+                <option value="Sagar Ratna" data-price="70000">Sagar Ratna</option>
+                <option value="Hansraj" data-price="30000">Hansraj</option>
+                <option value="Gopal Garden" data-price="20000">Gopal Garden</option>
+                <option value="Other">Other</option>
+            </select>
 
-      <div class="meta">
-        <div style="font-weight:700">Fast setup</div>
-        <div style="opacity:.5">•</div>
-        <div>Responsive-ready</div>
-      </div>
+            <div id="otherInputs">
+                <label for="otherPlace">Place (Other):</label>
+                <input type="text" id="otherPlace" name="Other_Place_Name" />
 
-      <div id="features" class="features" role="list">
-        <div class="feature" role="listitem">
-          <div class="f-icon">⚡</div>
-          <div class="f-body"><b>Quick Booking</b><span style="color:var(--muted)">One-click access to the booking flow.</span></div>
-        </div>
-
-        <div class="feature" role="listitem">
-          <div class="f-icon">🔒</div>
-          <div class="f-body"><b>Secure</b><span style="color:var(--muted)">Privacy-minded defaults and safe storage.</span></div>
-        </div>
-
-        <div class="feature" role="listitem">
-          <div class="f-icon">📱</div>
-          <div class="f-body"><b>Mobile-first</b><span style="color:var(--muted)">Optimized for phones, tablets and desktop.</span></div>
-        </div>
-      </div>
+                <label for="otherAmount">Amount (Other):</label>
+                <input type="number" id="otherAmount" name="Amount" min="0" />
+            </div>
 
       <footer>
         <div>© <span id="yr"></span> Business Colab</div>
